@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load constant %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" media="screen">
+    <title>{% constant 'charity_name' %}{% block title %}{% endblock title %}
+    </title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    No content available
+    {% endblock content %}
+</body>
+</html>

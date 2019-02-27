@@ -1,0 +1,24 @@
+img {
+    max-width: 100%; */
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+.navbar {
+  background-color: #9CACB2;
+  font-family: Monospace;
+  font-size: 40px;
+  padding: 20px;
+}
+
+.navbar-element {
+  background-color: #9CACB2;
+  font-family: Monospace;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.active-page{
+  font-size: 40px;
+  font-weight: bold;
+}
