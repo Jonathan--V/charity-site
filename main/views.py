@@ -17,10 +17,10 @@ class ContactRequestReceivedView(View):
 
 class ContactView(View):
     def post(self, request):
-        # create a form instance and populate it with data from the request:
         form = ContactForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
+            form.save()
             return HttpResponseRedirect('/contact_request_received/')
         else:
             return render(request, 'contact.html', {'form': form})

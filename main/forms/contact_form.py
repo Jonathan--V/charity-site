@@ -1,9 +1,9 @@
 from django.forms import ModelForm
 
-from main.models.main.contact_request_model import ContactRequestModel
+from main.models.main.contact_request import ContactRequest
 
 
 class ContactForm(ModelForm):
     class Meta:
-        model = ContactRequestModel
+        model = ContactRequest
         fields = '__all__'
