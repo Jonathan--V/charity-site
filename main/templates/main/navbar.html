@@ -1,0 +1,13 @@
+{% load tags %}
+
+{% url 'home_url_name' as home_url_name %}
+{% url 'about_url_name' as about_url_name %}
+{% url 'contact_url_name' as contact_url_name %}
+{% url 'help_request_url_name' as help_request_url_name %}
+
+<div id="navbar" class="navbar">
+    <a class="navbar-element {% active request home_url_name %}" href="{{home_url_name}}">Home</a>
+    <a class="navbar-element {% active request about_url_name %}" href="{{about_url_name}}">About</a>
+    <a class="navbar-element {% active request help_request_url_name %}" href="{{help_request_url_name}}">Request Help</a>
+    <a class="navbar-element {% active request contact_url_name %}" href="{{contact_url_name}}">Contact</a>
+</div>

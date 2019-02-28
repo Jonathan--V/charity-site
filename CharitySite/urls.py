@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import AboutView, ContactRequestReceivedView, ContactView, HomeView
+from main.views import AboutView, ContactRequestReceivedView, ContactView, HomeView, HelpRequestView, \
+    HelpRequestReceivedView, HelpRequestPage2View
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,9 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name = 'about_url_name'),
     path('contact/', ContactView.as_view(), name = 'contact_url_name'),
     path('contact_request_received/', ContactRequestReceivedView.as_view(), name = 'contact_request_received_url_name'),
+    path('help_request/', HelpRequestView.as_view(), name = 'help_request_url_name'),
+    path('help_request_page_2/', HelpRequestPage2View.as_view(), name = 'help_request_page_2_url_name'),
+    path('help_request_received/', HelpRequestReceivedView.as_view(), name = 'help_request_received_url_name'),
+
+
 ]
