@@ -7,3 +7,4 @@ class HelpForm(ModelForm):
     class Meta:
         model = HelpRequest
         exclude = ['person']
+        localized_fields = '__all__'

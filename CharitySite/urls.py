@@ -13,21 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path
+from django.utils.translation import gettext_lazy as _
 
 from main.views import AboutView, ContactRequestReceivedView, ContactView, HomeView, HelpRequestView, \
-    HelpRequestReceivedView, HelpRequestPage2View
+    HelpRequestReceivedView, HelpRequestPage2View, DirectoryView, SetLanguageView
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name = 'home_url_name'),
-    path('about/', AboutView.as_view(), name = 'about_url_name'),
-    path('contact/', ContactView.as_view(), name = 'contact_url_name'),
-    path('contact_request_received/', ContactRequestReceivedView.as_view(), name = 'contact_request_received_url_name'),
-    path('help_request/', HelpRequestView.as_view(), name = 'help_request_url_name'),
-    path('help_request_page_2/', HelpRequestPage2View.as_view(), name = 'help_request_page_2_url_name'),
-    path('help_request_received/', HelpRequestReceivedView.as_view(), name = 'help_request_received_url_name'),
-
-
-]
+urlpatterns = i18n_patterns(
+    path(_('admin/'), admin.site.urls),
+    path('', HomeView.as_view(), name='home_url_name'),
+    path(_('about/'), AboutView.as_view(), name='about_url_name'),
+    path(_('contact/'), ContactView.as_view(), name='contact_url_name'),
+    path(_('contact_request_received/'), ContactRequestReceivedView.as_view(),
+         name='contact_request_received_url_name'),
+    path(_('help_request/'), HelpRequestView.as_view(), name='help_request_url_name'),
+    path(_('help_request_page_2/'), HelpRequestPage2View.as_view(), name='help_request_page_2_url_name'),
+    path(_('help_request_received/'), HelpRequestReceivedView.as_view(), name='help_request_received_url_name'),
+    path(_('directory/'), DirectoryView.as_view(), name='directory_url_name'),
+    path(_('set_language/'), SetLanguageView.as_view(), name='set_language_url_name'),
+)

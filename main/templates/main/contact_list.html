@@ -1,0 +1,22 @@
+{% extends 'main\base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans '| Directory' %}
+{% endblock title %}
+
+{% block content %}
+<ul class="body">
+    {% for contact in object_list %}
+        {% if contact.publicly_viewable %}
+            <li>
+                {{contact.area_of_responsibility}} - {{ contact.title }} {{ contact.first_name }}
+                {{ contact.last_name }} ({{ contact.email_address }})
+            </li>
+        {% endif %}
+    {% empty %}
+        <li>{% trans 'No publicly viewable contacts.' %}</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

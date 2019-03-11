@@ -1,9 +1,6 @@
-* request help form
-* maps
-* directory (open and closed)?
 * search
 * tests
-* i18n
+* use django rest framework
 * ?migrate to postgres?
 
 * deployment
@@ -11,3 +8,7 @@
 
 
 * DONE general contact form
+* DONE request help form
+* DONE map of location
+* DONE i18n
+* DONE directory (open and closed)?

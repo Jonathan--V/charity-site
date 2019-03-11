@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-{% load constant %}
 {% load static %}
+{% load i18n %}
+{% load tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" media="screen">
-    <title>{% constant 'charity_name' %}{% block title %}{% endblock title %}
-    </title>
+    <title>{% constant 'charity_name' %}{% block title %}{% endblock title %}</title>
 </head>
 <body>
     {% include 'main/navbar.html' %}
     {% block content %}
-    <p class="body">No content available</p>
+    <p class="body">{% trans 'No content available' %}</p>
     {% endblock content %}
 </body>
 </html>

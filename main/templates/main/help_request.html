@@ -1,5 +1,11 @@
-{% extends 'main/form_base.html' %}
+{% extends 'main/base.html' %}
+
+{% load i18n %}
 
 {% block title %}
-| Ask for Help!
+{% trans '| Ask for Help!' %}
 {% endblock title %}
+
+{% block content %}
+{% include 'main/form.html' %}
+{% endblock content %}

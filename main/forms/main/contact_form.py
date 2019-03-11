@@ -7,3 +7,4 @@ class ContactForm(ModelForm):
     class Meta:
         model = ContactRequest
         fields = '__all__'
+        localized_fields = '__all__'
