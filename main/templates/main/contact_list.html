@@ -7,16 +7,25 @@
 {% endblock title %}
 
 {% block content %}
-<ul class="body">
+<br/>
+<table class="body centralised" border="5px" cellpadding="10px">
+    <tr>
+        <td>{% trans 'Area of Responsibility' %} </td>
+        <td>{% trans 'Title' %}</td>
+        <td>{% trans 'First name' %}</td>
+        <td>{% trans 'Last name' %}</td>
+        <td>{% trans 'Email address' %}</td>
+    </tr>
     {% for contact in object_list %}
         {% if contact.publicly_viewable %}
-            <li>
-                {{contact.area_of_responsibility}} - {{ contact.title }} {{ contact.first_name }}
-                {{ contact.last_name }} ({{ contact.email_address }})
-            </li>
+            <tr>
+                <td>{{contact.area_of_responsibility}} </td>
+                <td>{{ contact.title }} </td>
+                <td>{{ contact.first_name }} </td>
+                <td>{{ contact.last_name }} </td>
+                <td>{{ contact.email_address }} </td>
+            </tr>
         {% endif %}
-    {% empty %}
-        <li>{% trans 'No publicly viewable contacts.' %}</li>
     {% endfor %}
-</ul>
+</table>
 {% endblock content %}

@@ -4,11 +4,11 @@
 
 {% url 'home_url_name' as home_url %}
 {% url 'about_url_name' as about_url %}
-{% url 'contact_url_name' as contact_url %}
 {% url 'help_request_url_name' as help_request_url %}
 {% url 'directory_url_name' as directory_url %}
+{% url 'events_url_name' as events_url %}
+{% url 'contact_url_name' as contact_url %}
 
-{% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
 
@@ -18,6 +18,7 @@
     <a class="navbar-element {% active request about_url %}" href="{{ about_url }}">{% trans 'About' %}</a>
     <a class="navbar-element {% active request help_request_url %}" href="{{ help_request_url }}">{% trans 'Request Help' %}</a>
     <a class="navbar-element {% active request directory_url %}" href="{{ directory_url }}">{% trans 'Directory' %}</a>
+    <a class="navbar-element {% active request events_url %}" href="{{ events_url }}">{% trans 'Events' %}</a>
     <a class="navbar-element {% active request contact_url %}" href="{{ contact_url }}">{% trans 'Contact' %}</a>
     <form method="GET" class="navbar-element search-form">
         <input name="query" type="text" value="{{ request.GET.q }}" placeholder="{% trans 'Search...' %}"/>

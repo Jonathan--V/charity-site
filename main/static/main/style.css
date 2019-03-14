@@ -25,16 +25,20 @@ img {
   font-weight: bold;
 }
 
-.table{
-    text-align: left;
-}
-
 .body{
     font-family: Monospace;
     font-size: 20px;
-    text-align: center;
 }
 
 .search-form{
     display: inline-block;
+}
+
+
+.centralised{
+    margin: 0 auto;
+}
+
+.textcenter{
+    text-align: center;
 }

@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}
+{% trans '| Events' %}
+{% endblock title %}
+
+{% block content %}
+
+<table class="body centralised">
+    {% for event in events %}
+    <tr><td><b><a href="./{{event.id}}/"> {{event}}</a></b></td></tr>
+    {% endfor %}
+</table>
+{% endblock content %}

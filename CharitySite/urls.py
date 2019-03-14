@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.utils.translation import gettext_lazy as _
 
 from main.views import AboutView, ContactRequestReceivedView, ContactView, HomeView, HelpRequestView, \
@@ -33,4 +34,6 @@ urlpatterns = i18n_patterns(
     path(_('help_request_received/'), HelpRequestReceivedView.as_view(), name='help_request_received_url_name'),
     path(_('directory/'), DirectoryView.as_view(), name='directory_url_name'),
     path(_('set_language/'), SetLanguageView.as_view(), name='set_language_url_name'),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(_('events/'), include('events.urls')),
 )

@@ -1,14 +1,14 @@
 * search
 * tests
-* use django rest framework
+* use django rest framework (events)
 * ?migrate to postgres?
-
-* deployment
+* CI tool - ?Jenkins?
+* deployment - ?docker/vagrant?
 
 
 
 * DONE general contact form
 * DONE request help form
 * DONE map of location
-* DONE i18n
+* DONE i18n and l10n
 * DONE directory (open and closed)?

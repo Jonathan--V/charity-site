@@ -2,14 +2,11 @@
 
 <form method="post">
     {% csrf_token %}
-    <div align="center">
-        <table class="table">
-            {% for field in form  %}
-                {{ field.errors }}
-                <tr> <td>{{ field.label_tag }}</td> <td>{{ field }}</td> </tr>
-            {% endfor %}
-        </table>
-
-        <input type="submit" value="{% trans 'Submit' %}">
-    </div>
+    <table class="body centralised">
+        {% for field in form  %}
+            {{ field.errors }}
+            <tr> <td>{{ field.label_tag }}</td> <td>{{ field }}</td> </tr>
+        {% endfor %}
+    </table>
+    <div class="textcenter"><input class="body" type="submit" value="{% trans 'Submit' %}"></div>
 </form>
