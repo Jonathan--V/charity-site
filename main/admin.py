@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from events.models.events.event import Event
 from main.models.main.contact import Contact
 from main.models.main.contact_request import ContactRequest
 from main.models.main.help_request import HelpRequest
@@ -9,3 +10,4 @@ admin.site.register(ContactRequest)
 admin.site.register(HelpRequest)
 admin.site.register(Person)
 admin.site.register(Contact)
+admin.site.register(Event)

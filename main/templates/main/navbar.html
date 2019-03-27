@@ -18,7 +18,7 @@
     <a class="navbar-element {% active request about_url %}" href="{{ about_url }}">{% trans 'About' %}</a>
     <a class="navbar-element {% active request help_request_url %}" href="{{ help_request_url }}">{% trans 'Request Help' %}</a>
     <a class="navbar-element {% active request directory_url %}" href="{{ directory_url }}">{% trans 'Directory' %}</a>
-    <a class="navbar-element {% active request events_url %}" href="{{ events_url }}">{% trans 'Events' %}</a>
+    <a class="navbar-element {% active request events_url %}" href="http://localhost:4200/events">{% trans 'Events' %}</a>
     <a class="navbar-element {% active request contact_url %}" href="{{ contact_url }}">{% trans 'Contact' %}</a>
     <form method="GET" class="navbar-element search-form">
         <input name="query" type="text" value="{{ request.GET.q }}" placeholder="{% trans 'Search...' %}"/>
