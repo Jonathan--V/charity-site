@@ -1,12 +1,16 @@
-export class EventInformation{
-  constructor(public creator,
-    public date: Date,
-    public description: string,
-    public id: number,
-    public location: string,
-    public name: string) { }
+import { StrStrMap } from "src/app/types";
 
-  toString(): string {
+export class EventInformation{
+  private constructor(
+    public readonly creator: string,
+    public readonly date: Date,
+    public readonly description: string,
+    public readonly location: string,
+    public readonly name: string,
+    public readonly id?: number,
+  ) { }
+
+  public toString(): string {
     if (!this.date) {
       return "Event not yet loaded."
     }
@@ -15,17 +19,17 @@ export class EventInformation{
     }
   }
 
-  static fromObject(eventInformation: object): EventInformation {
+  public static fromObject(eventInformation: StrStrMap): EventInformation {
     //Essentially want to do:
         //new EventInformation(...eventInformation));
         //Spelt out:
     return new EventInformation(
         eventInformation["creator"],
-        eventInformation["date"],
+        new Date(eventInformation["date"]),
         eventInformation["description"],
-        eventInformation["id"],
         eventInformation["location"],
         eventInformation["name"],
+        +eventInformation["id"],
     )
   }
 }

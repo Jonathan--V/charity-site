@@ -1,0 +1,13 @@
+label, input, span {
+    float: left;
+    padding: 5px;
+    margin: 5px;
+}
+
+span {
+    color: red;
+}
+
+label, input[type="submit"] {
+    clear: left
+}

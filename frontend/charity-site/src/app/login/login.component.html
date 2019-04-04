@@ -1,0 +1,22 @@
+<div class="textcenter">
+    <form method="post" style="text-align:left;display:inline-block">
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="username" />
+        <span *ngFor="let error of usernameErrors">
+            <br />
+            {{ error }}
+        </span>
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="password" />
+        <span *ngFor="let error of passwordErrors">
+            <br/>
+            {{ error }}
+        </span>
+        <div class="centralised">
+            <input type="submit" name="Log In" (click)="login()" value="Log In" style="text-align:center;display:inline-block">
+        </div>
+    <span *ngFor="let error of getOtherErrors()">
+        {{ error }}<br />
+    </span>
+    </form>
+</div>

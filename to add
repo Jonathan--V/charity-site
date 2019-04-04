@@ -4,7 +4,9 @@
 * ?migrate to postgres?
 * CI tool - ?Jenkins?
 * deployment - ?docker/vagrant?
-
+* Switch to using HTTPS on angular and Django
+* Make use of the Refresh token
+* Angular i18n and l10n
 
 
 * DONE general contact form

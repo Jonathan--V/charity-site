@@ -1,4 +1,9 @@
-<h1 style="text-align:center;" >EVENTS</h1>
+<div class="textcenter" *ngFor="let notice of notices">
+  {{notice}}
+</div>
 <table class="centralised" *ngFor="let event of events">
-  <tr><td><b><a href="events/{{event.id}}/"> {{event}}</a></b></td></tr>
+  <tr><td>
+    <b><a href="events/{{event.id}}/"> {{event}} </a></b>
+    <button *ngIf="canDelete(event)" style="margin:5px" (click)="deleteEvent(event)">Delete</button>
+  </td></tr>
 </table>

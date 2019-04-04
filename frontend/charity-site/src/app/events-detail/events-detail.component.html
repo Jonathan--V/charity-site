@@ -1,8 +1,15 @@
-<p class="body textcenter"><b>{{event}}</b></p>
-<table class="body" style="margin: 0 auto">
-  <tr> <td>Name:</td> <td>{{event?.name}} </td></tr>
-  <tr> <td>Date:</td> <td> {{event?.date}} </td></tr>
-  <tr> <td>Creator:</td> <td> {{event?.creator}} </td></tr>
-  <tr> <td>Location:</td> <td> {{event?.location}} </td></tr>
-  <tr> <td>Description:</td> <td> {{event?.description}} </td></tr>
-</table>
+<div class="textcenter" *ngFor="let notice of notices">
+  {{notice}}
+</div>
+<div *ngIf="event" class="textcenter">
+  <p class="body textcenter"><b>{{event}}</b></p>
+  <table class="centralised body" style="text-align: left;">
+    <tr> <td>Name:</td> <td>{{event.name}} </td></tr>
+    <tr> <td>Date:</td> <td> {{event.date}} </td></tr>
+    <tr> <td>Creator:</td> <td> {{event.creator}} </td></tr>
+    <tr> <td>Location:</td> <td> {{event.location}} </td></tr>
+    <tr> <td>Description:</td> <td> {{event.description}} </td></tr>
+  </table>
+  <button style="display: inline-block;text-align: left;"
+          *ngIf="canDelete()" (click)="deleteEvent()">Delete this event</button>
+</div>

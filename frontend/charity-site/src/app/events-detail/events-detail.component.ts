@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Router } from "@angular/router";
 import { EventInformation } from "src/app/event-information";
-import { Observable } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
-
+import { EventService } from "src/app/event.service";
+import { StrStrMap, ErrorResponse } from "src/app/types";
+import { Utility } from 'src/app/utility';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-events-detail',
@@ -11,33 +12,36 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./events-detail.component.css']
 })
 export class EventsDetailComponent implements OnInit {
-  eventDetailUrl: string = "http://localhost:8000/en-gb/events/api/events/";
-  event: EventInformation;
+  event: EventInformation
+  notices: string[] = []
 
-  constructor(private http: HttpClient, private route: ActivatedRoute,) { }
+  constructor(
+    private eventService: EventService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getEvent();
   }
 
-  getEventObservable(): Observable<EventInformation[]> {
-    const id = this.route.snapshot.paramMap.get('id');
-    return this.http.get<EventInformation[]>(this.eventDetailUrl + id)
-  }
-
   getEvent(): void {
-    this.getEventObservable().subscribe(eventInformation => {
-
-      for (var key in eventInformation) {
-        console.log(`element: ${key}: ${eventInformation[key]}`);
-
-      }
-      this.event = EventInformation.fromObject(eventInformation);
-      console.log(`event: ${this.event}`)
-      for (var key in this.event) {
-        console.log(`element: ${key}: ${this.event[key]}`);
-        
-      }
-    })
+    const id = this.route.snapshot.paramMap.get('id') || ''
+    this.eventService.getEventObservable(id).subscribe(
+      (eventResponse: StrStrMap) => 
+        this.event = EventInformation.fromObject(eventResponse),
+      (errorResponse: ErrorResponse) =>
+        this.notices = Utility.processErrors(errorResponse, `Error when retrieving event with id ${id}`)
+    )
   }
+
+  canDelete(): boolean {
+    return this.userService.canDelete(this.event)
+  }
+
+  deleteEvent(): void {
+    this.eventService.deleteEvent(this.event, this.notices, () => this.router.navigate(['/events/']), () => { })
+  }
+
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { Observable, of } from 'rxjs';
 import { EventInformation } from "src/app/event-information";
+import { EventService } from "src/app/event.service";
+import { Utility } from '../utility';
+import { ErrorResponse } from '../types';
+import { UserService } from '../user.service';
+
 
 
 @Component({
@@ -11,40 +13,35 @@ import { EventInformation } from "src/app/event-information";
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  
 
-  eventsUrl: string = "http://localhost:8000/en-gb/events/api/events/"
-  events: EventInformation[] = []
+  events: EventInformation[]
 
-  constructor(private http: HttpClient) { }
+  notices: string[] = []
+
+  constructor(private eventService: EventService, private userService: UserService) { }
+
 
   ngOnInit(): void {
-    this.getEvents();
+    this.updateEvents()
   }
 
-  getEventsObservable(): Observable<EventInformation[][]> {
-    return this.http.get<EventInformation[][]>(this.eventsUrl)
-  }
-
-  getEvents(): EventInformation[] {
-    this.getEventsObservable().subscribe(eventInformation => {
-      
-      for (var key in eventInformation[0]) {
-        console.log(`element: ${key}: ${eventInformation[0][key]}`);
-        
-      }
-      for (var counter in eventInformation) {
+  updateEvents(): void {
+    console.log(this.notices)
+    this.eventService.getEventsObservable().subscribe(eventInformation => {
+      this.events = []
+      for (let counter in eventInformation) {
         this.events.push(EventInformation.fromObject(eventInformation[counter]))
       }
-      console.log(`events: ${this.events}`)
-      for (var key in this.events) {
-        console.log(`element: ${key}: ${this.events[key]}`);
-        console.log(`element: ${key}: ${this.events[key].creator}`);
+    }),
+      (errorResponse: ErrorResponse) => this.notices = Utility.processErrors(errorResponse, "Error when retrieving events")
+  }
 
-        console.log(`element: ${key}: ${this.events[0][key]}`);
-      }
-    })
-    
-    return this.events;
+  canDelete(eventInformation: EventInformation): boolean {
+    return this.userService.canDelete(eventInformation)
+  }
+
+  deleteEvent(eventInformation: EventInformation): void {
+    let update = () => this.updateEvents()
+    this.eventService.deleteEvent(eventInformation, this.notices, update, update)
   }
 }
