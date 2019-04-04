@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+    authenticationService: any;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -27,6 +28,6 @@ export class UserComponent implements OnInit {
   }
 
   logout(): void {
-    this.userService.logOut()
+    this.authenticationService.logout()
   }
 }

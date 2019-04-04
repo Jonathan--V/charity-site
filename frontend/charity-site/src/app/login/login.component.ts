@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from "src/app/user.service";
+import { AuthenticationService } from '../authentication.service';
 import { StrStrMap } from '../types';
 import { Utility } from '../utility';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,13 +23,17 @@ export class LoginComponent implements OnInit {
   passwordErrors: string = this.errors['password'];
 
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
 
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
-        console.log(params)
         this.returnUrl = params.returnUrl
       })
   }
@@ -44,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userService.loginObservable(this.username, this.password).subscribe(
+    this.authenticationService.loginObservable(this.username, this.password).subscribe(
       (data: StrStrMap) => {
         this.errors = {}
         this.userService.updateData(data['token']);

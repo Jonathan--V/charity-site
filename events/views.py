@@ -41,11 +41,13 @@ class WrapperViewSet(ViewSet):
 
 class ObtainTokenWrapperViewSet(WrapperViewSet):
     permission_classes = (AllowAny,)
+
     def __init__(self, *args, **kwargs):
         super().__init__(ObtainJSONWebToken(), *args, **kwargs)
 
 
 class RefreshTokenWrapperViewSet(WrapperViewSet):
+    permission_classes = (AllowAny,)
 
     def __init__(self, *args, **kwargs):
         super().__init__(RefreshJSONWebToken(), *args, **kwargs)

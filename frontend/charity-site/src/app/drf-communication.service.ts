@@ -13,15 +13,20 @@ export class DrfCommunicationService {
 
 
   public get<T>(suffix: string): Observable<T> {
+    this.refreshToken()
     return this.http.get<T>(this.buildUrl(suffix))
   }
 
-  public post(suffix: string, body: StrStrMap, requiresAuthentication = true): Observable<StrStrMap> {
+  public post(suffix: string, body: StrStrMap, requiresAuthentication = true, refresh = true): Observable<StrStrMap> {
     const headers = requiresAuthentication ? this.getHeaders() : undefined
+    if (refresh) {
+      this.refreshToken()
+    }
     return this.http.post<StrStrMap>(this.buildUrl(suffix), body, headers)
   }
 
   public delete(suffix: string) {
+    this.refreshToken()
     return this.http.delete<StrStrMap>(this.buildUrl(suffix), this.getHeaders());
   }
 
@@ -29,7 +34,6 @@ export class DrfCommunicationService {
     return {
       headers: new HttpHeaders({
         'Authorization': `JWT ${this.userService.getToken()}`
-
       })
     }
   }
@@ -40,5 +44,13 @@ export class DrfCommunicationService {
 
   private buildUrl(suffix: string): string {
     return this.getDRFUrl() + suffix
+  }
+
+  private refreshToken(): void {
+    if (this.userService.isLoggedIn()) {
+      this.post('token-refresh/', { "token": this.userService.getToken() }, false, false).subscribe(
+        successResponse => this.userService.updateData(successResponse.token)
+      )
+    }
   }
 }
