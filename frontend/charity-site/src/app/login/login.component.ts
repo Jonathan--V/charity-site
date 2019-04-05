@@ -60,17 +60,4 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
-
-  //refreshToken() {
-  //  this.userService.refreshToken();
-
-  //}
-
-  //logout() {
-  //  this.userService.logout();
-
-  //}
-
-    
 }

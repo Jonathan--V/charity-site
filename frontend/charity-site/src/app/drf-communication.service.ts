@@ -17,15 +17,15 @@ export class DrfCommunicationService {
     return this.http.get<T>(this.buildUrl(suffix))
   }
 
-  public post(suffix: string, body: StrStrMap, requiresAuthentication = true, refresh = true): Observable<StrStrMap> {
-    const headers = requiresAuthentication ? this.getHeaders() : undefined
-    if (refresh) {
+  public post(suffix: string, body: StrStrMap, requiresAuthentication = true, shouldRefresh = true): Observable<StrStrMap> {
+    if (shouldRefresh) {
       this.refreshToken()
     }
+    const headers = requiresAuthentication ? this.getHeaders() : undefined
     return this.http.post<StrStrMap>(this.buildUrl(suffix), body, headers)
   }
 
-  public delete(suffix: string) {
+  public delete(suffix: string): Observable<StrStrMap> {
     this.refreshToken()
     return this.http.delete<StrStrMap>(this.buildUrl(suffix), this.getHeaders());
   }
@@ -47,7 +47,8 @@ export class DrfCommunicationService {
   }
 
   private refreshToken(): void {
-    if (this.userService.isLoggedIn()) {
+    console.log(this.userService.expiresSoon())
+    if (this.userService.isLoggedIn() && this.userService.expiresSoon()) {
       this.post('token-refresh/', { "token": this.userService.getToken() }, false, false).subscribe(
         successResponse => this.userService.updateData(successResponse.token)
       )

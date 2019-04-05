@@ -4,16 +4,16 @@
 <div class="textcenter">
     <form style="display: inline-block;text-align: left;" class="centralised" #eventForm="ngForm" (submit)="createEvent(eventForm)">
         <label for="name">Event name:</label>
-        <input type="text" [(ngModel)]="model.name" name="name" id="name" required />
+        <input type="text" [(ngModel)]="model.name" name="name" id="name" (change)="save('name')" required />
         <br />
         <label for="location">Location:</label>
-        <input type="text" [(ngModel)]="model.location" name="location" id="location" required />
+        <input type="text" [(ngModel)]="model.location" name="location" id="location" (change)="save('location')" required />
         <br />
         <label for="date">Date:</label>
-        <input type="date" [(ngModel)]="model.date" name="date" id="date" required />
+        <input type="date" [(ngModel)]="model.date" name="date" id="date" (change)="save('date')" required />
         <br />
         <label for="description">Description:</label>
-        <input type="text" [(ngModel)]="model.description" name="description" id="description" required />
+        <input type="text" [(ngModel)]="model.description" name="description" id="description" (change)="save('description')" required />
         <br />
         <button type="submit" [disabled]="!eventForm.form.valid">Create event</button>
         <div *ngIf="errors && errors.length">

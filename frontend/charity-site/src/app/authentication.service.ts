@@ -21,6 +21,6 @@ export class AuthenticationService {
    * So, we do not need to contact the backend server.
    */
   public logout(): void {
-    localStorage.clear()
+    return this.userService.clearAuthenticationData()
   }
 }

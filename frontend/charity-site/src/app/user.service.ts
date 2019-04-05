@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventInformation } from './event-information';
+import { Store } from './store';
 
 
 @Injectable({
@@ -7,10 +8,12 @@ import { EventInformation } from './event-information';
 })
 export class UserService {
 
+  store = new Store('authentication.')
+
   constructor() {}
    
   public isLoggedIn(): boolean {
-    const expirySeconds = localStorage.getItem('token_expiry') || 0
+    const expirySeconds = this.store.getItem('token_expiry') || 0
 
     const hasJWT = !!this.getToken()
     const JWTNotExpired = +expirySeconds * 1000 > Date.now()
@@ -19,11 +22,11 @@ export class UserService {
   }
 
   public getToken(): string {
-    return localStorage.getItem('token') || ''
+    return this.store.getItem('token') || ''
   }
 
   public getUsername(): string {
-    return localStorage.getItem('username') || ''
+    return this.store.getItem('username') || ''
   }
 
   public canDelete(eventInformation: EventInformation): boolean {
@@ -31,11 +34,23 @@ export class UserService {
       && eventInformation.creator == this.getUsername()
   }
 
+  public expiresSoon(): boolean {
+    const expirySeconds = this.store.getItem('token_expiry') || 0
+    const fiveMinutes = 300000
+    return +expirySeconds * 1000 < Date.now() + fiveMinutes
+  }
+
   public updateData(token: string): void {
     const token_parts = token.split(/\./)
     const token_decoded = JSON.parse(window.atob(token_parts[1]))
-    localStorage.setItem('token', token)
-    localStorage.setItem('token_expiry', token_decoded.exp)
-    localStorage.setItem('username', token_decoded.username)
+    this.store.setItem('token', token)
+    this.store.setItem('token_expiry', token_decoded.exp)
+    this.store.setItem('username', token_decoded.username)
   }
+
+  public clearAuthenticationData() {
+    this.store.clear()
+  }
+
+
 }

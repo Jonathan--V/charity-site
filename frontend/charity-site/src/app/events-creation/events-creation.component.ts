@@ -5,6 +5,7 @@ import { StrStrMap } from '../types';
 import { Utility } from '../utility';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '../store';
 
 @Component({
   selector: 'app-events-creation',
@@ -19,21 +20,22 @@ export class EventsCreationComponent implements OnInit {
   private errors: string[] = []
 
   private latestAddedId: string = ''
-    
+
+  private store = new Store("event-creation-form.")
 
   constructor(private userService: UserService, private eventService: EventService, private router: Router) { }
   
   ngOnInit() {
-    this.redirectToLogin()
+    if (!this.isLoggedIn()) {
+      this.redirectToLogin()
+    }
+    else {
+      this.load()
+    }
   }
 
   public isLoggedIn(): boolean {
     return this.userService.isLoggedIn()
-  }
-  private redirectToLogin() {
-    if (!this.isLoggedIn()) {
-      this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } })
-    }
   }
 
   public createEvent(eventForm: NgForm): void {
@@ -47,6 +49,7 @@ export class EventsCreationComponent implements OnInit {
         successfulResponse => {
           this.model = {}
           eventForm.reset()
+          this.store.clear()
           this.latestAddedId = successfulResponse.id
         },
         errorResponse => {
@@ -54,7 +57,20 @@ export class EventsCreationComponent implements OnInit {
         }
       )
     }
-    
   }
+
+  private redirectToLogin() {
+    this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } })
+  }
+
+  private save(field_name: string): void {
+    this.store.setItem(field_name, this.model[field_name])
+  }
+
+  private load(): void {
+    this.model = this.store.load()
+  }
+
+
 
 }
