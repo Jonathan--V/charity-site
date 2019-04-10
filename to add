@@ -1,16 +1,16 @@
 * search
-* tests
-* use django rest framework (events)
+* Angular tests
 * ?migrate to postgres?
-* CI tool - ?Jenkins?
-* deployment - ?docker/vagrant?
+* CI tool - ?TravisCI + Jenkins?
+* deployment - ?docker/vagrant/kubernetes?
 * Switch to using HTTPS on angular and Django
-* Make use of the Refresh token
 * Angular i18n and l10n
-
+* Django tests
 
 * DONE general contact form
 * DONE request help form
 * DONE map of location
 * DONE i18n and l10n
-* DONE directory (open and closed)?
+* DONE directory (open and closed)
+* DONE Make use of the Refresh token
+* DONE use django rest framework (events)

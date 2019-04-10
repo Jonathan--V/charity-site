@@ -31,7 +31,7 @@
             <input name="language" type="hidden" value="{{ language.code }}" />
         </form>
         {% with 'main/flag_'|add:language.code|add:'.png' as image_location %}
-            <input type="image" class="lang-button" form="form_{{ language.code }}" value="{{ language.code }}" src="{% static image_location  %}" width="35" height="35"/>
+            <input id="switch_to_{{language.code}}" type="image" class="lang-button" form="form_{{ language.code }}" value="{{ language.code }}" src="{% static image_location  %}" width="35" height="35"/>
         {% endwith %}
     {% endfor %}
 </div>
