@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-08 18:17+0000\n"
+"POT-Creation-Date: 2019-04-15 11:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,19 +22,20 @@ msgstr ""
 msgid "Area of responsibility"
 msgstr "Zone de responsabilité"
 
-#: .\models\main\contact.py:7
+#: .\models\main\contact.py:7 .\templates\main\contact_list.html:14
 msgid "Title"
 msgstr "Titre"
 
-#: .\models\main\contact.py:8
+#: .\models\main\contact.py:8 .\templates\main\contact_list.html:15
 msgid "First name"
 msgstr "Prénom"
 
-#: .\models\main\contact.py:9
+#: .\models\main\contact.py:9 .\templates\main\contact_list.html:16
 msgid "Last name"
 msgstr "Nom de famille"
 
 #: .\models\main\contact.py:10 .\models\main\contact_request.py:7
+#: .\templates\main\contact_list.html:17
 msgid "Email address"
 msgstr "Adresse électronique"
 
@@ -103,14 +104,16 @@ msgid "| Contact us!"
 msgstr "| Contactez nous!"
 
 #: .\templates\main\contact.html:11
-msgid "You can contact us by:"
-msgstr "Vous pouvez nous contacter par:"
+#, fuzzy
+#| msgid "| Contact us!"
+msgid "Contact us by:"
+msgstr "| Contactez nous!"
 
-#: .\templates\main\contact.html:13
+#: .\templates\main\contact.html:12
 msgid "Phone: 01234 567 890"
 msgstr "Téléphone: 01234 567 890"
 
-#: .\templates\main\contact.html:15
+#: .\templates\main\contact.html:13
 msgid "Mail:"
 msgstr "Courrier:"
 
@@ -122,9 +125,11 @@ msgstr "Ou remplissez le formulaire en ligne ci-dessous:"
 msgid "| Directory"
 msgstr "| Annuaire"
 
-#: .\templates\main\contact_list.html:19
-msgid "No publicly viewable contacts."
-msgstr "Aucun contact visible publiquement."
+#: .\templates\main\contact_list.html:13
+#, fuzzy
+#| msgid "Area of responsibility"
+msgid "Area of Responsibility"
+msgstr "Zone de responsabilité"
 
 #: .\templates\main\contact_request_received.html:7
 msgid "| Contact Request Received!"
@@ -135,25 +140,13 @@ msgid "Thank you for contacting us!"
 msgstr "Merci de nous contacter!"
 
 #: .\templates\main\contact_request_received.html:12
-#: .\templates\main\help_request_received.html:12
+#: .\templates\main\request_help_received.html:12
 msgid "Thanks!"
 msgstr "Merci!"
 
-#: .\templates\main\form.html:13 .\templates\main\navbar.html:24
+#: .\templates\main\form.html:14 .\templates\main\navbar.html:25
 msgid "Submit"
 msgstr "Soumettre"
-
-#: .\templates\main\help_request.html:6
-msgid "| Ask for Help!"
-msgstr "| Demander de l'aide!"
-
-#: .\templates\main\help_request_received.html:7
-msgid "| Help Request Received!"
-msgstr "| Demande d'aide reçue!"
-
-#: .\templates\main\help_request_received.html:11
-msgid "Thank you for submitting your request for help!"
-msgstr "Merci d'avoir soumis votre demande d'aide!"
 
 #: .\templates\main\home.html:7
 msgid "Welcome to to the home page!"
@@ -176,9 +169,34 @@ msgid "Directory"
 msgstr "Annuaire"
 
 #: .\templates\main\navbar.html:21
+msgid "Events"
+msgstr "Événements"
+
+#: .\templates\main\navbar.html:22
 msgid "Contact"
 msgstr "Contact"
 
-#: .\templates\main\navbar.html:23
+#: .\templates\main\navbar.html:24
 msgid "Search..."
 msgstr "Chercher..."
+
+#: .\templates\main\request_help.html:6
+msgid "| Ask for Help!"
+msgstr "| Demander de l'aide!"
+
+#: .\templates\main\request_help_received.html:7
+msgid "| Help Request Received!"
+msgstr "| Demande d'aide reçue!"
+
+#: .\templates\main\request_help_received.html:11
+msgid "Thank you for submitting your request for help!"
+msgstr "Merci d'avoir soumis votre demande d'aide!"
+
+#~ msgid "You can contact us by:"
+#~ msgstr "Vous pouvez nous contacter par:"
+
+#~ msgid "No publicly viewable contacts."
+#~ msgstr "Aucun contact visible publiquement."
+
+msgid "request_help/"
+msgstr "demande_daide/"

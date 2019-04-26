@@ -5,3 +5,4 @@ __pycache__
 *.iml
 node_modules
 geckodriver.log
+logs

@@ -6,12 +6,12 @@ from django.urls import resolve, reverse
 from django.utils import translation
 from django.views import View
 from django.views.generic import ListView
-from django.utils.translation import gettext as _
 
 from main.forms.main.help_form import HelpForm
 from main.forms.main.contact_form import ContactForm
 from main.forms.main.person_form import PersonForm
 from main.models.main.contact import Contact
+
 
 class AboutView(View):
     def get(self, request):
@@ -23,9 +23,9 @@ class ContactRequestReceivedView(View):
         return render(request, 'main/contact_request_received.html', {})
 
 
-class HelpRequestReceivedView(View):
+class RequestHelpReceivedView(View):
     def get(self, request):
-        return render(request, 'main/help_request_received.html', {})
+        return render(request, 'main/request_help_received.html', {})
 
 
 class ContactView(View):
@@ -47,38 +47,38 @@ class HomeView(View):
         return render(request, 'main/home.html', {})
 
 
-class HelpRequestView(View):
+class RequestHelpView(View):
     def post(self, request):
         person_form = PersonForm(request.POST)
         if person_form.is_valid():
             person = person_form.save()
-            request.session['HelpRequestView']['person_id'] = person.pk
-            return HttpResponseRedirect(reverse('help_request_page_2_url_name'))
+            request.session['RequestHelpView']['person_id'] = person.pk
+            return HttpResponseRedirect(reverse('request_help_page_2_url_name'))
         else:
-            return render(request, 'main/help_request.html', {'form': person_form})
+            return render(request, 'main/request_help.html', {'form': person_form})
 
     def start(self, request):
-        request.session['HelpRequestView'] = {}
-        return render(request, 'main/help_request.html', {'form': PersonForm()})
+        request.session['RequestHelpView'] = {}
+        return render(request, 'main/request_help.html', {'form': PersonForm()})
 
     def get(self, request):
         return self.start(request)
 
 
-class HelpRequestPage2View(View):
+class RequestHelpPage2View(View):
     def post(self, request):
-        help_request_form = HelpForm(request.POST)
-        if help_request_form.is_valid():
-            person_id = request.session['HelpRequestView']['person_id']
-            help_request = help_request_form.save(commit=False)
+        request_help_form = HelpForm(request.POST)
+        if request_help_form.is_valid():
+            person_id = request.session['RequestHelpView']['person_id']
+            help_request = request_help_form.save(commit=False)
             help_request.person_id = person_id
-            help_request_form.save()
-            return HttpResponseRedirect(reverse('help_request_received_url_name'))
+            request_help_form.save()
+            return HttpResponseRedirect(reverse('request_help_received_url_name'))
         else:
-            return render(request, 'main/help_request.html', {'form': help_request_form})
+            return render(request, 'main/request_help.html', {'form': request_help_form})
 
     def get(self, request):
-        return render(request, 'main/help_request.html', {'form': HelpForm()})
+        return render(request, 'main/request_help.html', {'form': HelpForm()})
 
 
 class DirectoryView(ListView):

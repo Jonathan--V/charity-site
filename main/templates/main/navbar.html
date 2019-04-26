@@ -4,7 +4,7 @@
 
 {% url 'home_url_name' as home_url %}
 {% url 'about_url_name' as about_url %}
-{% url 'help_request_url_name' as help_request_url %}
+{% url 'request_help_url_name' as request_help_url %}
 {% url 'directory_url_name' as directory_url %}
 {% url 'events_url_name' as events_url %}
 {% url 'contact_url_name' as contact_url %}
@@ -16,7 +16,7 @@
 <div id="navbar" class="navbar">
     <a class="navbar-element {% active request home_url %}" href="{{ home_url }}">{% trans 'Home' %}</a>
     <a class="navbar-element {% active request about_url %}" href="{{ about_url }}">{% trans 'About' %}</a>
-    <a class="navbar-element {% active request help_request_url %}" href="{{ help_request_url }}">{% trans 'Request Help' %}</a>
+    <a class="navbar-element {% active request request_help_url %}" href="{{ request_help_url }}">{% trans 'Request Help' %}</a>
     <a class="navbar-element {% active request directory_url %}" href="{{ directory_url }}">{% trans 'Directory' %}</a>
     <a class="navbar-element {% active request events_url %}" href="http://localhost:4200/events">{% trans 'Events' %}</a>
     <a class="navbar-element {% active request contact_url %}" href="{{ contact_url }}">{% trans 'Contact' %}</a>

@@ -10,20 +10,20 @@
 <br/>
 <table class="body centralised" border="5px" cellpadding="10px">
     <tr>
-        <td>{% trans 'Area of Responsibility' %} </td>
-        <td>{% trans 'Title' %}</td>
-        <td>{% trans 'First name' %}</td>
-        <td>{% trans 'Last name' %}</td>
-        <td>{% trans 'Email address' %}</td>
+        <td id="area_of_responsibility_header">{% trans 'Area of Responsibility' %} </td>
+        <td id="title_header">{% trans 'Title' %}</td>
+        <td id="first_name_header">{% trans 'First name' %}</td>
+        <td id="last_name_header">{% trans 'Last name' %}</td>
+        <td id="email_address_header">{% trans 'Email address' %}</td>
     </tr>
     {% for contact in object_list %}
         {% if contact.publicly_viewable %}
             <tr>
-                <td>{{contact.area_of_responsibility}} </td>
-                <td>{{ contact.title }} </td>
-                <td>{{ contact.first_name }} </td>
-                <td>{{ contact.last_name }} </td>
-                <td>{{ contact.email_address }} </td>
+                <td id="area_of_responsibility_row_{{ forloop.counter }}">{{contact.area_of_responsibility}} </td>
+                <td id="title_row_{{ forloop.counter }}">{{ contact.title }} </td>
+                <td id="first_name_row_{{ forloop.counter }}">{{ contact.first_name }} </td>
+                <td id="last_name_row_{{ forloop.counter }}">{{ contact.last_name }} </td>
+                <td id="email_address_row_{{ forloop.counter }}"}}>{{ contact.email_address }} </td>
             </tr>
         {% endif %}
     {% endfor %}

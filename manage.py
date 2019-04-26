@@ -3,7 +3,11 @@ import os
 import sys
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CharitySite.settings')
+    test_mode = os.environ.get('charity_site_is_test_mode')
+    if test_mode and 'test' in test_mode:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'charity_configuration.test_settings')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'charity_configuration.dev_settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
