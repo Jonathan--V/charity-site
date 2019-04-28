@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl])
       },
       errorResponse => {
-        this.errors = Utility.processErrorsMap(errorResponse, "Error when attempting to login:")
+        this.errors = Utility.processErrorsMap(errorResponse, "Error when attempting to login")
       }
     )
   }

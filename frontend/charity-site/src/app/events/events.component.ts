@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EventInformation } from "src/app/event-information";
 import { EventService } from "src/app/event.service";
 import { Utility } from '../utility';
-import { ErrorResponse } from '../types';
+import { ErrorResponse, StrStrMap } from '../types';
 import { UserService } from '../user.service';
+import { AuthenticationService } from '../authentication.service';
 
 
 
@@ -18,7 +19,7 @@ export class EventsComponent implements OnInit {
 
   notices: string[] = []
 
-  constructor(private eventService: EventService, private userService: UserService) { }
+  constructor(private eventService: EventService, private userService: UserService, private authenticationService: AuthenticationService) { }
 
 
   ngOnInit(): void {
@@ -26,14 +27,17 @@ export class EventsComponent implements OnInit {
   }
 
   updateEvents(): void {
-    console.log(this.notices)
-    this.eventService.getEventsObservable().subscribe(eventInformation => {
-      this.events = []
-      for (let counter in eventInformation) {
-        this.events.push(EventInformation.fromObject(eventInformation[counter]))
+    this.eventService.getEventsObservable().subscribe(
+      eventInformation => {
+        this.events = []
+        for (let counter in eventInformation) {
+          this.events.push(EventInformation.fromObject(eventInformation[counter]))
+        }
+      },
+      (errorResponse: ErrorResponse) => {
+        this.notices = Utility.processErrors(errorResponse, "Error when retrieving events")
       }
-    }),
-      (errorResponse: ErrorResponse) => this.notices = Utility.processErrors(errorResponse, "Error when retrieving events")
+    )
   }
 
   canDelete(eventInformation: EventInformation): boolean {

@@ -47,7 +47,6 @@ export class DrfCommunicationService {
   }
 
   private refreshToken(): void {
-    console.log(this.userService.expiresSoon())
     if (this.userService.isLoggedIn() && this.userService.expiresSoon()) {
       this.post('token-refresh/', { "token": this.userService.getToken() }, false, false).subscribe(
         successResponse => this.userService.updateData(successResponse.token)

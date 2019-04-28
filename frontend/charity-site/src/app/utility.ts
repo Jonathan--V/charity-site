@@ -12,14 +12,21 @@ export class Utility {
     if (typeof errors === "string") {
       result['error'] = errors
     }
+    else if (typeof errorResponse['message'] === "string"
+      && String(errorResponse['message']).endsWith(': 0 Unknown Error')) {
+      result['backend_unavailable'] = "Unable to contact backend server."
+    }
     else {
       for (let [key, item] of Object.entries(errors)) {
         if (typeof item === "string") {
           result[key] = item
         }
-        else {
+        else if (Array.isArray(item)) {
           result[key] = item.join('\n')
-        } 
+        }
+        else {
+          throw new Error(`Error messages are of unexpected type. Item is: ${item}`);
+        }
       }
     }
     for (let [key, value] of Object.entries(result)){
