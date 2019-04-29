@@ -19,8 +19,7 @@ export class EventsComponent implements OnInit {
 
   notices: string[] = []
 
-  constructor(private eventService: EventService, private userService: UserService, private authenticationService: AuthenticationService) { }
-
+  constructor(private eventService: EventService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.updateEvents()

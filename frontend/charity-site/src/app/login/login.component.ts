@@ -18,9 +18,13 @@ export class LoginComponent implements OnInit {
   password: string = '';
   errors: StrStrMap = {};
 
-  usernameErrors: string = this.errors['username'];
+  getUsernameError(): string{
+	return this.errors.username;
+  }
 
-  passwordErrors: string = this.errors['password'];
+  getPasswordError(): string{
+	return this.errors.password;
+  }
 
 
   constructor(
@@ -29,7 +33,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { }
-
 
   ngOnInit() {
     this.route.queryParams
@@ -44,7 +47,9 @@ export class LoginComponent implements OnInit {
       if (!['username', 'password'].includes(key)) {
         otherErrors.push(value);
       }
-    }      
+    }
+	console.log(this.errors)
+	console.log(`${this.usernameErrors}   |   ${this.passwordErrors}`)
     return otherErrors;
   }
 
