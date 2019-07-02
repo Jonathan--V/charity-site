@@ -5,8 +5,8 @@
 * deployment - ?docker/vagrant/kubernetes?
 * Switch to using HTTPS on angular and Django
 * Angular i18n and l10n
-* Django tests
 
+* DONE Django tests
 * DONE general contact form
 * DONE request help form
 * DONE map of location

@@ -1,7 +1,7 @@
 import { StrStrMap } from "src/app/types";
 
 export class EventInformation{
-  private constructor(
+  public constructor(
     public readonly creator: string,
     public readonly date: Date,
     public readonly description: string,
@@ -14,8 +14,8 @@ export class EventInformation{
     if (!this.date) {
       return "Event not yet loaded."
     }
-    else{
-      return `${this.name} - ${this.date.toString()}`
+    else {
+      return `${this.name} - ${this.date.toLocaleDateString()}`
     }
   }
 

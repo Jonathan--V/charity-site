@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   errors: StrStrMap = {};
 
   getUsernameError(): string{
-	return this.errors.username;
+	  return this.errors.username;
   }
 
   getPasswordError(): string{
-	return this.errors.password;
+	  return this.errors.password;
   }
 
 
@@ -48,8 +48,6 @@ export class LoginComponent implements OnInit {
         otherErrors.push(value);
       }
     }
-	console.log(this.errors)
-	console.log(`${this.usernameErrors}   |   ${this.passwordErrors}`)
     return otherErrors;
   }
 

@@ -1,5 +1,5 @@
 <div style="text-align:right">
-    <div *ngIf="isLoggedIn(); else loggedOut">
+    <div id=logged_in_text *ngIf="isLoggedIn(); else loggedOut">
         You are logged in as {{getUsername()}} <button id="logout_button" (click)="logout()">logout</button>
     </div>
     <ng-template #loggedOut>

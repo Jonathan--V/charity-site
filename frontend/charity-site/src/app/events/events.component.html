@@ -1,9 +1,9 @@
 <div class="textcenter" *ngFor="let notice of notices">
   {{notice}}
 </div>
-<table class="centralised" *ngFor="let event of events">
+<table id="events_repeater" class="centralised" *ngFor="let event of events">
   <tr><td>
-    <b><a href="events/{{event.id}}/"> {{event}} </a></b>
+    <b><a id="event_{{event.id}}_link" class="event_link" href="events/{{event.id}}/"> {{event}} </a></b>
     <button *ngIf="canDelete(event)" style="margin:5px" (click)="deleteEvent(event)">Delete</button>
   </td></tr>
 </table>

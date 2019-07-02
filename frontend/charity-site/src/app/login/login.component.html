@@ -3,12 +3,12 @@
 		<div style="text-align:left;display:inline-block">
 		
 			<label>Username</label>
-			<input type="text" name="username" [(ngModel)]="username" />
+			<input id="username" type="text" name="username" [(ngModel)]="username" />
 			<span *ngIf="getUsernameError()">
 				{{ getUsernameError() }}
 			</span>
 			<label>Password</label>
-			<input type="password" name="password" [(ngModel)]="password" />
+			<input id="password" type="password" name="password" [(ngModel)]="password" />
 			<span *ngIf="getPasswordError()">
 				{{ getPasswordError() }}
 			</span>
@@ -19,6 +19,6 @@
 		</div>
 	</div>
 	<div class="textcenter">
-		<input type="submit" name="Log In" (click)="login()" value="Log In" style="float:none">
+		<input type="submit" id="log_in_button" name="Log In" (click)="login()" value="Log In" style="float:none">
 	</div>
 </form>

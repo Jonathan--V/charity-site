@@ -4,18 +4,18 @@
 <div class="textcenter">
     <form style="display: inline-block;text-align: left;" class="centralised" #eventForm="ngForm" (submit)="createEvent(eventForm)">
         <label for="name">Event name:</label>
-        <input type="text" [(ngModel)]="model.name" name="name" id="name" (change)="save('name')" required />
+        <input type="text" [(ngModel)]="model.name" name="name" id="event_name" (change)="save('name')" required />
         <br />
         <label for="location">Location:</label>
-        <input type="text" [(ngModel)]="model.location" name="location" id="location" (change)="save('location')" required />
+        <input type="text" [(ngModel)]="model.location" name="location" id="event_location" (change)="save('location')" required />
         <br />
         <label for="date">Date:</label>
-        <input type="date" [(ngModel)]="model.date" name="date" id="date" (change)="save('date')" required />
+        <input type="date" [(ngModel)]="model.date" name="date" id="event_date" (change)="save('date')" required />
         <br />
         <label for="description">Description:</label>
-        <input type="text" [(ngModel)]="model.description" name="description" id="description" (change)="save('description')" required />
+        <textarea [(ngModel)]="model.description" name="description" id="event_description" (change)="save('description')" required></textarea>
         <br />
-        <button type="submit" [disabled]="!eventForm.form.valid">Create event</button>
+        <button type="submit" id="create_event_button" [disabled]="!eventForm.form.valid">Create event</button>
         <div *ngIf="errors && errors.length">
             Errors:
             <div *ngFor="let error of errors">

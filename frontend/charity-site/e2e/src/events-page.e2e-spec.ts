@@ -1,24 +1,15 @@
 import { EventsPage } from './page-objects/events-page.po';
-import { browser, logging } from 'protractor';
-import { Common } from './common';
+import { CommonTest } from './common';
 
-describe('Events Page', () => {
-  let eventsPage: EventsPage;
+let specificTests = (getPage: () => EventsPage) => {
+  return () => {
+    it('should list no events', () => {
+      expect(getPage().getEvents()).toEqual({});
+    })
+    it('should display a log in button', () => {
+      expect(getPage().getLoginButtonText()).toEqual('login');
+    });
+  }
+}
 
-  beforeEach(() => {
-    eventsPage = new EventsPage();
-    eventsPage.navigateTo();
-  });
-
-  afterEach(async () => {
-    // Protractor's system for accessing logs is currently broken in Firefox.
-    if (browser.name === "chrome") {
-      console.log("Reached")
-      const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-      expect(logs).not.toContain(jasmine.objectContaining({
-        level: logging.Level.SEVERE,
-      } as logging.Entry));
-    }
-
-  });
-});
+CommonTest.commonTest('Events Page', EventsPage, specificTests)
