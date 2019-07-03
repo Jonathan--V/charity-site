@@ -1,11 +1,12 @@
-* search
 * Angular tests
 * ?migrate to postgres?
-* CI tool - ?TravisCI + Jenkins?
+* Add TravisCI integration
 * deployment - ?docker/vagrant/kubernetes?
-* Switch to using HTTPS on angular and Django
+* Switch to using HTTPS on Angular and Django
 * Angular i18n and l10n
 
+
+* REJECTED(no out of the box solution - would take a long time) search
 * DONE Django tests
 * DONE general contact form
 * DONE request help form

@@ -1,0 +1,23 @@
+
+python
+npm
+
+python -m pip install --upgrade pip
+pip install django
+pip install django-rest-framework
+pip install django-autotranslate
+pip install django-cors-headers
+pip install djangorestframework-jwt
+
+cd frontend\charity-site
+npm i npm@latest -g
+npm install -g @angular/cli
+npm install -g typescript
+
+then npm run ng serve
+and py manage.py runserver (in new tab)
+
+For Intellij, remember to get Python Community Plugin
+
+For Visual Studio, remember to get the TypeScript extension:
+Tools > Extensions and Updates > Online > set Sort By to Recent & search for Typescript
