@@ -3,3 +3,6 @@ django-rest-framework
 django-autotranslate
 django-cors-headers
 djangorestframework-jwt
+psutil
+requests
+selenium
